@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+</head>
+<form action = "/NO" bnkb method = "GET">
+   
+</form>
+<body>
+    <p>no</p>
+    <script>
+        var second=5;
+        var time = document.getElementById("time");
+        function show() {
+            second--;
+            if(second==0){
+                //跳转页面
+                location.href="/";
+            }
+            //用来动态设置里面的内容
+            time.innerHTML=second+"";
+    
+        }
+        //用来实现这个一秒实现一次这个方法
+        setInterval(show,1000);
+        
+    
+    </script>
+</body>
+</html>
