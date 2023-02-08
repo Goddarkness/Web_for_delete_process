@@ -5,6 +5,8 @@ import psutil
 import time
 from time import sleep
 import functools
+import os
+from datetime import timedelta
 
 
 
@@ -49,6 +51,8 @@ def index():
 @app.route('/login',methods=['POST','GET'] )
 
 def login():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=1)
     if request.method == 'GET':
         return render_template('login.html')
     username = request.form.get('username')   
@@ -83,13 +87,11 @@ def execute():
 
 
 
-''' 
-@app.route('/<name>/<float:running_time>')
-def index(name,running_time):
+@app.route('/api/<name>/<float:running_time>')
+@is_login
+def index1(name,running_time):
     process_delete(name,running_time)
     return "success"
-'''
-    
 
 
 app.run(host="0.0.0.0",debug=True,port=5000)
